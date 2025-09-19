@@ -79,7 +79,34 @@ const Navbar = () => {
             <Link to={"/create"} className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Create Post</Link>
             <Link to={"/communities"} className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Communities</Link>
             <Link to={"/community/create"} className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Community</Link> 
+            
           </div>
+{user ? (
+  <div className=" flex items-center mt-3 space-y-2">
+    {user.user_metadata.avatar_url && (
+      <img
+        src={user.user_metadata.avatar_url}
+        className="w-10 h-10 rounded-full object-cover"
+        alt="User Avatar"
+      />
+    )}
+    <span className="mr-5 text-gray-300">{displayName}</span>
+    <button
+      onClick={signOut}
+      className="bg-red-500 w-[25%] px-3 py-2 rounded cursor-pointer"
+    >
+      Sign Out
+    </button>
+  </div>
+) : (
+  <button
+    onClick={signInWithGithub}
+    className="bg-blue-500 w-full mt-3 px-3 py-2 rounded cursor-pointer"
+  >
+    Sign In With Github
+  </button>
+)}
+
         </div>
         )
       }
